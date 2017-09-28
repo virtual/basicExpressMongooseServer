@@ -9,6 +9,7 @@
   "author": "Mark Buckner <buckner.a.mark@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "mongoose": "^4.11.13"
   }
 }
