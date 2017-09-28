@@ -7,6 +7,8 @@ var bodyParser = require('body-parser'); // wire -- work with info from the clie
 // body-parser is middle-ware
 
 // specify that you'll use the bodyParser
+
+app.use(express.static('public'));
 app.use(bodyParser.json({type: 'application/json'}));
 app.use(bodyParser.urlencoded({
   exended: true
@@ -48,8 +50,16 @@ app.post('/chairs', function(req, res, next) {
     }
   });
 });
-app.get('/chairs', function(req, res) {
-
+// when you design an API, it might be worth learning error handing (how it works)
+// this is a mongodb query using mongoose
+app.get('/chairs', function(req, res, next) {
+  Chair.find(function(err, chairs) {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(chairs);
+    }
+  });
 });
 app.put('/chairs', function(req, res) {
 
