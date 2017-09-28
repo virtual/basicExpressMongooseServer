@@ -1,7 +1,7 @@
 run "npm install", open your favorite browser, and go to localhost:5000
 
 ##Exercise 1:
- Today in class, we got to the point where we had all our crud operations built on the server. Now we need to finish our templating. Add a column on the table whose row displays a delete button. On click, call the /delete on the server to finish the D in CRUD. Finally, add a column with a button "update" in each row. Upon clicking, fetch the values "model" and "type" with jQuery and use the /put we built in our server to update our database. After clicking the delete and update buttons, update the table in our html to reflect the changes in the database. This might be hard, but I know you can do it!!!
+ Today in class, we got to the point where we had all our crud operations built on the server. Now we need to finish our templating. Add a column on the table whose row displays a delete button. On click, call the /delete on the server to finish the D in CRUD. Finally, add a column with a button "update" in each row. Upon clicking, fetch the values "model" and "type" with jQuery and use the /put we built in our server to update our database. After clicking the delete and update buttons, update the table in our html to reflect the changes in the database. You'll have to use replace the current strings in the <td> with inputs. This might be hard, but I know you can do it!!!
 
 ## Exercise 2: 
   Create a mongo/mongoose database like we did on Wednesday. Feel free to use this repo as a starting point, or feel free to use the code you wrote yesterday. 
