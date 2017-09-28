@@ -2,6 +2,7 @@ var express = require("express");
 var app = express();
 var mongoose = require('mongoose');
 var Chair = require('./models/chair'); // singular!
+// body-parser is middle-ware
 
 mongoose.connect('mongodb://localhost/chairs');
 var db = mongoose.connection;
@@ -22,8 +23,22 @@ app.get("/", function (req, res) {
 // app.delete('/chairs');
 
 // add callbacks to each
-app.post('/chairs', function(req, res) {
+// post > body > x-www-form-urlencoded
+app.post('/chairs', function(req, res, next) {
+  var chair = new Chair();
+  chair.type = req.body.type;
+  chair.model = req.body.model;
 
+  // asyncronous!
+  // to connect and check in postman, go to localhost:5000/chairs
+  // 
+  chair.save(function(err, chairReturned){
+    if (err) { console.log(err); 
+      next(err); // passes the err back to the top-level guy
+    } else { // keep the else, otherwise weird errors will build up!
+      res.json('chair put in db ' + chairReturned.model);
+    }
+  });
 });
 app.get('/chairs', function(req, res) {
 
