@@ -2,7 +2,15 @@ var express = require("express");
 var app = express();
 var mongoose = require('mongoose');
 var Chair = require('./models/chair'); // singular!
+var bodyParser = require('body-parser'); // wire -- work with info from the client's app (browser) and lets you do stuff with it
+// express has a system that we can't edit, but we're modifying things using post and get--we can insert things between our bodyparser and our boss. Next passes things to bodyparser (errors), when info comes down from the top level, gets translated by the body parser. It turns input into www-urlencode-form-data-x stuff
 // body-parser is middle-ware
+
+// specify that you'll use the bodyParser
+app.use(bodyParser.json({type: 'application/json'}));
+app.use(bodyParser.urlencoded({
+  exended: true
+}));
 
 mongoose.connect('mongodb://localhost/chairs');
 var db = mongoose.connection;
