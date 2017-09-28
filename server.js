@@ -46,6 +46,7 @@ app.post('/chairs', function(req, res, next) {
     if (err) { console.log(err); 
       next(err); // passes the err back to the top-level guy
     } else { // keep the else, otherwise weird errors will build up!
+      //console.log(chairReturned);
       res.json('chair put in db ' + chairReturned.model);
     }
   });
@@ -61,10 +62,36 @@ app.get('/chairs', function(req, res, next) {
     }
   });
 });
-app.put('/chairs', function(req, res) {
-
+app.put('/chairs', function(req, res, next) {
+  Chair.findById(req.body.id, function(err, chair) {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      chair.type = req.body.type;
+      chair.model = req.body.model;
+      chair.save(function(err, chairReturned){
+        if (err) { console.log(err); 
+          next(err); 
+        } else { 
+          res.json('chair updated in db ' + chairReturned.model);
+        }
+      }); 
+    }
+  });
 });
-app.delete('/chairs', function(req, res) {
+app.delete('/chairs', function(req, res, next) {
+// find using id then mongoose id
+// mongoose allows you to use mongodb schemas ORM object-relationship management, layer that helps us manage the objects
+// Chair.findOne({_id: req.body.id}, function(){ });
+  Chair.findByIdAndRemove(req.body.id, function(err, chair) {
+    if (err) {
+      console.log(err);
+      next(err);
+    } else {
+      res.json("successfully deleted a chair: " + chair.model);
+    }
+  });
 
 });
 
