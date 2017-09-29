@@ -12,7 +12,10 @@ $(function () {
         url: '/chairs',
         data: "id=" + deleteId,
         success: function(data) {
-          $(thisRow).remove();
+          //$(thisRow).fadeOut().remove();
+          $(thisRow).fadeOut("normal", function() {
+            $(thisRow).remove();
+          });
         }
       });
     });
