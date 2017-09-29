@@ -4,7 +4,7 @@ var formatAsTable = function (allItems) {
   var itemRow = "";
   allItems.forEach((item) => {
     console.log(item);
-    itemRow += "<tr>" + '<td><button class="delete"><i class="fa fa-trash" aria-hidden="true"></i> Delete <span class="hideid">' + item._id + "</span></button>" + "</td><td>" + item.type + "</td><td>" + item.model +  "</td></tr>";
+    itemRow += "<tr>" + '<td><button class="delete" data-id="'+ item._id + '"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>' + "</td><td>" + item.type + "</td><td>" + item.model +  "</td></tr>";
   }); 
   return itemRow;
 };
